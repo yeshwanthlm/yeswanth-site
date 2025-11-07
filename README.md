@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Yeshwanth L M - Personal Website
 
 A modern, responsive personal website showcasing professional journey, speaking events, and social media presence.
@@ -11,10 +10,11 @@ A modern, responsive personal website showcasing professional journey, speaking 
 - **Contact Form** - Functional contact form with email integration
 - **Modern Animations** - Smooth transitions and interactive elements
 - **Professional Layout** - Clean, modern design with gradient themes
+- **CI/CD Pipeline** - Automated deployment to AWS S3 using GitHub Actions
 
 ## 🚀 Live Demo
 
-Visit the live website: [https://yeshwanthlm.github.io/personal-website](https://yeshwanthlm.github.io/personal-website)
+Visit the live website: [https://yeshwanthlm.in](https://yeshwanthlm.in)
 
 ## 📁 Project Structure
 
@@ -25,6 +25,9 @@ Visit the live website: [https://yeshwanthlm.github.io/personal-website](https:/
 ├── load-events.js          # Dynamic event loading system
 ├── add-event.html          # Admin interface for adding events
 ├── profile-picture.jpg     # Profile image
+├── .github/
+│   └── workflows/
+│       └── deploy.yml     # GitHub Actions CI/CD pipeline
 ├── speaking-events/        # Speaking events data
 │   ├── README.md          # Instructions for adding events
 │   ├── IEEE-NextGen-Summit-2025/
@@ -68,7 +71,7 @@ Visit the live website: [https://yeshwanthlm.github.io/personal-website](https:/
 }
 ```
 
-4. Refresh the website - your event will appear automatically!
+4. Push to GitHub - the CI/CD pipeline will automatically deploy!
 
 ## 🔧 Customization
 
@@ -98,6 +101,8 @@ const socialCounts = {
 - **JavaScript (ES6+)** - Dynamic functionality and interactions
 - **Font Awesome** - Icons
 - **Google Fonts** - Typography (Inter font family)
+- **GitHub Actions** - CI/CD automation
+- **AWS S3** - Static website hosting
 
 ## 📱 Browser Support
 
@@ -109,11 +114,25 @@ const socialCounts = {
 
 ## 🚀 Deployment
 
-### GitHub Pages
-1. Push code to a GitHub repository
-2. Go to repository Settings → Pages
-3. Select source branch (usually `main`)
-4. Your site will be available at `https://username.github.io/repository-name`
+This website uses GitHub Actions for automated deployment to AWS S3.
+
+### Setup GitHub Actions CI/CD
+
+1. **Add AWS Credentials to GitHub Secrets:**
+   - Go to your GitHub repository
+   - Navigate to Settings → Secrets and variables → Actions
+   - Add the following secrets:
+     - `AWS_ACCESS_KEY_ID`: Your AWS access key
+     - `AWS_SECRET_ACCESS_KEY`: Your AWS secret key
+
+2. **Push to Main Branch:**
+   - Any push to the `main` branch will automatically trigger deployment
+   - GitHub Actions will sync all files to your S3 bucket
+
+3. **Manual Deployment:**
+   - Go to Actions tab in GitHub
+   - Select "Deploy to S3" workflow
+   - Click "Run workflow"
 
 ### Other Hosting Options
 - Netlify
@@ -140,7 +159,3 @@ Feel free to fork this project and customize it for your own use! If you find an
 ---
 
 ⭐ If you found this project helpful, please give it a star on GitHub!
-=======
-# yeswanth-site
-yeswanth-site
->>>>>>> 19ee5eff87d745e27a46b6f1693ddeed2ce0cc35
