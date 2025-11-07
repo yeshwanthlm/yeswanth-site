@@ -1,0 +1,30 @@
+{
+  "name": "yeshwanth-personal-website",
+  "version": "1.0.0",
+  "description": "Personal website showcasing professional journey, speaking events, and social media presence",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'No build process needed for static site'",
+    "deploy": "echo 'Push to GitHub to deploy via GitHub Pages'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeshwanthlm/personal-website.git"
+  },
+  "keywords": [
+    "personal-website",
+    "portfolio",
+    "speaking-events",
+    "aws-community-builder",
+    "tech-speaker",
+    "responsive-design"
+  ],
+  "author": "Yeshwanth L M <techwithyeshwanth@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yeshwanthlm/personal-website/issues"
+  },
+  "homepage": "https://yeshwanthlm.github.io/personal-website"
+}

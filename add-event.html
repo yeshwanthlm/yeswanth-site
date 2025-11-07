@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Speaking Event - Yeshwanth L M</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .admin-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .topics-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .topic-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .topic-remove {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .add-topic-btn {
+            background: #f8f9fa;
+            border: 2px dashed #667eea;
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .file-upload {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            background: #e9ecef;
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .preview-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .preview-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .preview-image img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+        
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .instructions h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions ul {
+            margin-left: 1rem;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1 class="section-title">Add Speaking Event</h1>
+            <p class="section-subtitle">Create a new entry for your speaking events gallery</p>
+        </div>
+        
+        <div class="instructions">
+            <h4><i class="fas fa-info-circle"></i> How it works</h4>
+            <ul>
+                <li>Fill out the form below with your event details</li>
+                <li>Upload images from your event (multiple files supported)</li>
+                <li>Click "Generate Event Files" to create the folder structure</li>
+                <li>The event will automatically appear on your website</li>
+            </ul>
+        </div>
+        
+        <form class="admin-form" id="eventForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title *</label>
+                    <input type="text" id="eventTitle" name="title" required placeholder="AWS Community Day 2024">
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Event Date *</label>
+                    <input type="date" id="eventDate" name="date" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="eventLocation">Location *</label>
+                    <input type="text" id="eventLocation" name="location" required placeholder="Bangalore, India">
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type *</label>
+                    <select id="eventType" name="type" required>
+                        <option value="">Select Type</option>
+                        <option value="Keynote">Keynote</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Meetup">Meetup</option>
+                        <option value="Conference">Conference</option>
+                        <option value="Webinar">Webinar</option>
+                        <option value="Panel">Panel Discussion</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="eventDescription">Event Description *</label>
+                <textarea id="eventDescription" name="description" rows="4" required 
+                    placeholder="Describe your presentation, key topics covered, and the impact of your talk..."></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="eventAudience">Audience Size</label>
+                    <input type="text" id="eventAudience" name="audience" placeholder="500+" 
+                        pattern="[0-9]+\+?" title="Enter number followed by optional +">
+                </div>
+                <div class="form-group">
+                    <label>Topics/Tags</label>
+                    <input type="text" id="topicInput" placeholder="Enter topic and press Enter">
+                    <div class="topics-input" id="topicsContainer">
+                        <button type="button" class="add-topic-btn" onclick="addTopic()">
+                            <i class="fas fa-plus"></i> Add Topic
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Event Images</label>
+                <div class="file-upload" onclick="document.getElementById('imageUpload').click()">
+                    <input type="file" id="imageUpload" multiple accept="image/*" onchange="handleImageUpload(event)">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <p>Click to upload images or drag and drop</p>
+                    <small>Supports JPG, PNG, WebP formats</small>
+                </div>
+                <div class="preview-images" id="imagePreview"></div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Website
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Generate Event Files
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        let topics = [];
+        let uploadedImages = [];
+        
+        // Topic management
+        function addTopic() {
+            const input = document.getElementById('topicInput');
+            const topic = input.value.trim();
+            
+            if (topic && !topics.includes(topic)) {
+                topics.push(topic);
+                updateTopicsDisplay();
+                input.value = '';
+            }
+        }
+        
+        function removeTopic(topic) {
+            topics = topics.filter(t => t !== topic);
+            updateTopicsDisplay();
+        }
+        
+        function updateTopicsDisplay() {
+            const container = document.getElementById('topicsContainer');
+            const topicsHTML = topics.map(topic => 
+                `<span class="topic-tag">
+                    ${topic}
+                    <button type="button" class="topic-remove" onclick="removeTopic('${topic}')">×</button>
+                </span>`
+            ).join('');
+            
+            container.innerHTML = topicsHTML + 
+                `<button type="button" class="add-topic-btn" onclick="addTopic()">
+                    <i class="fas fa-plus"></i> Add Topic
+                </button>`;
+        }
+        
+        // Enter key for topics
+        document.getElementById('topicInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addTopic();
+            }
+        });
+        
+        // Image upload handling
+        function handleImageUpload(event) {
+            const files = Array.from(event.target.files);
+            
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        uploadedImages.push({
+                            name: file.name,
+                            data: e.target.result
+                        });
+                        updateImagePreview();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        
+        function updateImagePreview() {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = uploadedImages.map((img, index) => 
+                `<div class="preview-image">
+                    <img src="${img.data}" alt="${img.name}">
+                    <button type="button" class="remove-image" onclick="removeImage(${index})">×</button>
+                </div>`
+            ).join('');
+        }
+        
+        function removeImage(index) {
+            uploadedImages.splice(index, 1);
+            updateImagePreview();
+        }
+        
+        // Form submission
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const eventData = {
+                title: formData.get('title'),
+                date: formData.get('date'),
+                location: formData.get('location'),
+                description: formData.get('description'),
+                topics: topics,
+                audience: formData.get('audience') || 'N/A',
+                type: formData.get('type')
+            };
+            
+            generateEventFiles(eventData);
+        });
+        
+        function generateEventFiles(eventData) {
+            // Create folder name from title
+            const folderName = eventData.title.toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, '-');
+            
+            // Generate event.json content
+            const jsonContent = JSON.stringify(eventData, null, 2);
+            
+            // Create download instructions
+            const instructions = `
+Event files generated successfully!
+
+1. Create a folder named: ${folderName}
+2. Save the following as 'event.json' in that folder:
+
+${jsonContent}
+
+3. Add your ${uploadedImages.length} uploaded images to the same folder
+4. Place the folder in your 'speaking-events' directory
+5. Refresh your website to see the new event!
+
+Folder structure:
+speaking-events/
+└── ${folderName}/
+    ├── event.json
+    ├── image1.jpg
+    ├── image2.jpg
+    └── ...
+            `;
+            
+            // Show instructions
+            alert(instructions);
+            
+            // Download event.json file
+            const blob = new Blob([jsonContent], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'event.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            // Download images
+            uploadedImages.forEach((img, index) => {
+                const link = document.createElement('a');
+                link.href = img.data;
+                link.download = `image-${index + 1}-${img.name}`;
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>

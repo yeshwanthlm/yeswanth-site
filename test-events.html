@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Events Loading</title>
+</head>
+<body>
+    <div id="test-output"></div>
+    
+    <script>
+    async function testEventLoading() {
+        const output = document.getElementById('test-output');
+        output.innerHTML = 'Testing event loading...<br>';
+        
+        const eventFolders = [
+            'IEEE-NextGen-Summit-2025',
+            'IEEE-NKCon-2025', 
+            'IEEE-GCU-SB-Inaugration'
+        ];
+        
+        for (const folder of eventFolders) {
+            try {
+                output.innerHTML += `Testing ${folder}...<br>`;
+                const response = await fetch(`speaking-events/${folder}/event.json`);
+                
+                if (response.ok) {
+                    const eventData = await response.json();
+                    output.innerHTML += `✅ ${folder}: ${eventData.title}<br>`;
+                } else {
+                    output.innerHTML += `❌ ${folder}: HTTP ${response.status}<br>`;
+                }
+            } catch (error) {
+                output.innerHTML += `❌ ${folder}: ${error.message}<br>`;
+            }
+        }
+    }
+    
+    testEventLoading();
+    </script>
+</body>
+</html>
