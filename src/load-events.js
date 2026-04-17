@@ -26,7 +26,7 @@ async function loadRealSpeakingEvents() {
                 console.log(`Loading event: ${folder}`);
                 
                 // Load event.json
-                const response = await fetch(`speaking-events/${folder}/event.json`);
+                const response = await fetch(`../speaking-events/${folder}/event.json`);
                 
                 if (response.ok) {
                     const eventData = await response.json();
@@ -97,7 +97,7 @@ async function detectImagesInFolder(folderName) {
 
     // Test each known image
     for (const imageName of eventImages) {
-        const imagePath = `speaking-events/${folderName}/${imageName}`;
+        const imagePath = `../speaking-events/${folderName}/${imageName}`;
         
         try {
             const response = await fetch(imagePath, { method: 'HEAD' });
