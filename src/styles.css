@@ -57,12 +57,13 @@ body {
 }
 
 .logo-img {
-    height: 42px;
+    height: 36px;
     width: auto;
     display: block;
     object-fit: contain;
-    mix-blend-mode: screen;
-    filter: brightness(1.1);
+    border-radius: 8px;
+    background: #fff;
+    padding: 4px 8px;
 }
 
 .nav-menu {
@@ -327,11 +328,14 @@ body {
 
 .hero-logo-img {
     display: block;
-    height: 70px;
+    height: 52px;
     width: auto;
-    mix-blend-mode: screen;
-    filter: brightness(1.1);
-    margin: 0.3rem 0;
+    max-width: 260px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #fff;
+    padding: 6px 12px;
+    margin: 0.4rem 0;
 }
 
 @keyframes profileFloat {
