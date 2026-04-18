@@ -40,7 +40,7 @@ jobs:
             --cache-control "max-age=31536000, immutable" \
             --delete
 
-      # Deploy speaking events data
+      # Deploy speaking events data + images
       - name: Upload speaking events
         run: |
           aws s3 sync speaking-events/ s3://${{ secrets.S3_BUCKET }}/speaking-events/ \
